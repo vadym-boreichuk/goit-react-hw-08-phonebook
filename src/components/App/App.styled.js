@@ -14,7 +14,15 @@ export const Div = styled.div`
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 `;
 
+// export const Dive = styled.div`
+//   display: flex;
+//   /* margin-top: 100px; */
+//   justify-content: space-around;
+//   width: 100%;
+// `;
+
 export const Container = styled.div`
+  margin-top: 80px;
   display: flex;
   justify-content: space-evenly;
 `;

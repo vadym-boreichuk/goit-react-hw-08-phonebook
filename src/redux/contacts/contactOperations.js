@@ -2,13 +2,14 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://6436a0fa3e4d2b4a12d760a3.mockapi.io';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
+      console.log(response);
       // При успішному запиті повертаємо проміс із даними
       return response.data;
     } catch (e) {
@@ -36,6 +37,7 @@ export const addContact = createAsyncThunk(
   'contacts/add',
   async ({ name, number }, thunkAPI) => {
     try {
+      console.log({ name, number });
       const response = await axios.post('/contacts', { name, number });
       toast.success(`This ${name} contact is added to phonebook!`);
       return response.data;
