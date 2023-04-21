@@ -1,27 +1,30 @@
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Div } from './HomePage.styled';
 
 function Home() {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>
-        Contact manager welcome page{' '}
-        <span role="img" aria-label="Greeting icon">
-          💁‍♀️
-        </span>
-      </h1>
-    </div>
+    <HelmetProvider>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      <Div>
+        <h1>Phonebook</h1>
+
+        <p>Everything you need to manage your contacts.</p>
+
+        <p>
+          The application will help you quickly find the desired contact and
+          keep order in your address book.
+        </p>
+        <p>Contact management: Create, delete, save contacts.</p>
+
+        <p>Dynamic filters to organize contacts. </p>
+        <p>
+          Private contacts: These are contacts available only in the app on your
+          account
+        </p>
+      </Div>
+    </HelmetProvider>
   );
 }
 

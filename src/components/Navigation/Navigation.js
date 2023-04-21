@@ -1,16 +1,19 @@
-import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { Nav } from './Navigation.styled';
-import { useSelector } from 'react-redux';
+import { StyledLink, Title, TitleBox } from 'components/AuthNav/AuthNav.styled';
 
 export const Navigation = () => {
-  // const isLoggedIn = useAuth();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   return (
-    <Nav>
-      <NavLink to="/">Home</NavLink>
-      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
-    </Nav>
+    <TitleBox>
+      <StyledLink to="/">
+        <Title>Home</Title>
+      </StyledLink>
+      {isLoggedIn && (
+        <StyledLink to="/contacts">
+          <Title>Contacts</Title>
+        </StyledLink>
+      )}
+    </TitleBox>
   );
 };

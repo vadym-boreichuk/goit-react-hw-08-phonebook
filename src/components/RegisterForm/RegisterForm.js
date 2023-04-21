@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
-import { Form, Label } from './RegisterForm.styled';
-// import { register } from '../../redux/auth/auth-operations';
+import { Form, Label, Input, Button } from '../ContactForm/Form.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -12,26 +11,40 @@ export const RegisterForm = () => {
     const name = form.elements.name.value;
     const email = form.elements.email.value;
     const password = form.elements.password.value;
-    // console.log({ name, email, password });
     dispatch(register({ name, email, password }));
-    // form.reset();
   };
 
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
       <Label>
         Username
-        <input type="text" name="name" />
+        <Input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
       </Label>
       <Label>
         Email
-        <input type="email" name="email" />
+        <Input
+          type="email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          required
+        />
       </Label>
       <Label>
         Password
-        <input type="password" name="password" />
+        <Input
+          type="password"
+          name="password"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
+          required
+        />
       </Label>
-      <button type="submit">Register</button>
+      <Button type="submit">Register</Button>
     </Form>
   );
 };

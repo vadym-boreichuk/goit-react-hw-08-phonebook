@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
-import { Form, Label } from '../../components/RegisterForm/RegisterForm.styled';
-// import { register } from '../../redux/auth/auth-operations';
+import { Button, Input, Form, Label } from 'components/ContactForm/Form.styled';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -11,22 +10,30 @@ export const LoginForm = () => {
     const form = e.currentTarget;
     const email = form.elements.email.value;
     const password = form.elements.password.value;
-    // console.log({ name, email, password });
     dispatch(logIn({ email, password }));
-    // form.reset();
   };
 
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
       <Label>
         Email
-        <input type="email" name="email" />
+        <Input
+          type="email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          required
+        />
       </Label>
       <Label>
         Password
-        <input type="password" name="password" />
+        <Input
+          type="password"
+          name="password"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
+          required
+        />
       </Label>
-      <button type="submit">Log in</button>
+      <Button type="submit">Log in</Button>
     </Form>
   );
 };

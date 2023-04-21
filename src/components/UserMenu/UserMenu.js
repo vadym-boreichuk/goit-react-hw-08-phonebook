@@ -1,25 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { logOut } from 'redux/auth/authOperations';
 import { useAuth } from '../../hooks/useAuth';
+import { Title, TitleBox } from 'components/AuthNav/AuthNav.styled';
+import { Button } from 'components/ContactItem/ContactItem.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  console.log(user);
-  // console.log(isLoggedIn);
 
   return (
-    <div>
-      {/* {isLoggedIn && ( */}
-      <>
-        <p>Welcome, {user.name}</p>
-        <button type="button" onClick={() => dispatch(logOut())}>
-          Logout
-        </button>
-      </>
-      {/* )} */}
-    </div>
+    <TitleBox>
+      <Title>Welcome, {user.name}</Title>
+      <Button type="button" onClick={() => dispatch(logOut())}>
+        Logout
+      </Button>
+    </TitleBox>
   );
 };

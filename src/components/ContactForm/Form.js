@@ -1,15 +1,14 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Form, Input, Label } from './Form.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/contactOperations';
-import { selectContacts } from 'redux/contacts/contactSelectors';
+import { useContacts } from '../../hooks/useContacts';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  // console.log(contacts);
-  const contactName = contacts.map(name => name.name);
+  const { selectedContacts } = useContacts();
+  const contactName = selectedContacts.map(name => name.name);
 
   const addCont = event => {
     event.preventDefault();

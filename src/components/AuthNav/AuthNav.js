@@ -1,11 +1,14 @@
-import { NavLink, Link } from 'react-router-dom';
-// import { Linka } from './AuthNav.styled';
+import { Title, TitleBox, StyledLink } from './AuthNav.styled';
 
 export const AuthNav = () => {
   return (
-    <div>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Log In</NavLink>
-    </div>
+    <TitleBox>
+      <StyledLink to="/register">
+        <Title>Register</Title>
+      </StyledLink>
+      <StyledLink to="/login">
+        <Title>Log In</Title>
+      </StyledLink>
+    </TitleBox>
   );
 };

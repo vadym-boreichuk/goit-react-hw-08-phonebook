@@ -1,63 +1,68 @@
 import { ToastContainer } from 'react-toastify';
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Filter } from '../Filter/Filter';
 import { AppBar } from 'components/AppBar/AppBar';
-import { ContactList } from '../ContactList/ContactList';
-import { ContactForm } from '../ContactForm/Form';
-import { Div, Dive, Container, Title } from './App.styled';
+import { Container } from './App.styled';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/contacts/contactOperations';
-import Home from '../pages/HomePage';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import Contacts from '../pages/Contacts';
-import { RestrictedRoute } from '../RestrictedRoute';
+import { PublicRoute } from '../PublicRoute';
+import { refreshUser } from 'redux/auth/authOperations';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { useAuth } from 'hooks/useAuth';
+
+const Home = lazy(() => import('../pages/HomePage'));
+const Register = lazy(() => import('../pages/Register'));
+const Login = lazy(() => import('../pages/Login'));
+const Contacts = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
-    <Container>
-      <AppBar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Container>
-    // <Container>
-    //   <AppBar />
-    //   <RegisterForm />
-    //   <LoginForm />
-    //   <Dive>
-    //     <Div>
-    //       <Title>Phonebook</Title>
-    //       <ContactForm />
-    //     </Div>
-    //     <Div>
-    //       <Title>Contacts</Title>
-    //       <Filter />
-    //       <ContactList />
-    //     </Div>
-    //   </Dive>
-    //   <ToastContainer
-    //     font-size="15px"
-    //     position="top-right"
-    //     autoClose={5000}
-    //     hideProgressBar={false}
-    //     newestOnTop={false}
-    //     closeOnClick
-    //     rtl={false}
-    //     pauseOnFocusLoss
-    //     draggable
-    //     pauseOnHover
-    //     theme="light"
-    //   />
-    // </Container>
+    !isRefreshing && (
+      <Container>
+        <AppBar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route
+              path="/register"
+              element={<PublicRoute component={<Register />} />}
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute component={<Login />} redirectTo={'/contacts'} />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute component={<Contacts />} redirectTo={'/login'} />
+              }
+            />
+          </Routes>
+        </Suspense>
+
+        <ToastContainer
+          font-size="15px"
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </Container>
+    )
   );
 };

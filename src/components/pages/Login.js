@@ -1,14 +1,17 @@
-// import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { LoginForm } from '../LoginForm/LoginForm';
+import { Div } from './HomePage.styled';
 
 function Login() {
   return (
-    <div>
-      {/* <Helmet>
+    <HelmetProvider>
+      <Helmet>
         <title>Login</title>
-      </Helmet> */}
-      <LoginForm />
-    </div>
+      </Helmet>
+      <Div>
+        <LoginForm />
+      </Div>
+    </HelmetProvider>
   );
 }
 

@@ -1,22 +1,21 @@
 import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-// export const Linka = styled.NavLink`
-//   display: inline-block;
-//   text-decoration: none;
-//   padding: 12px;
-//   font-weight: 700;
-//   color: #2a363b;
-// `;
+export const TitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  align-items: center;
+`;
 
-// .link {
-//   display: inline-block;
-//   text-decoration: none;
-//   padding: 12px;
-//   font-weight: 700;
-//   color: #2a363b;
-// }
+export const Title = styled.h2`
+  font-weight: 400;
+`;
 
-// .link.active {
-//   color: #e84a5f;
-// }
+export const StyledLink = styled(NavLink)`
+  color: grey;
+  text-decoration: none;
+  &.active {
+    color: black;
+  }
+`;
