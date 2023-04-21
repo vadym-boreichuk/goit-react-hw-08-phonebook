@@ -20,8 +20,8 @@ export const LoginForm = () => {
         <Input
           type="email"
           name="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          required
+          // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          // required
         />
       </Label>
       <Label>
@@ -29,8 +29,8 @@ export const LoginForm = () => {
         <Input
           type="password"
           name="password"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
-          required
+          // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 3}$"
+          // required
         />
       </Label>
       <Button type="submit">Log in</Button>
