@@ -24,10 +24,10 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    !isRefreshing && (
-      <Container>
-        <AppBar />
-        <Suspense fallback={<div>Loading...</div>}>
+    <Container>
+      <AppBar />
+      <Suspense fallback={<div>Loading...</div>}>
+        {!isRefreshing && (
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route
@@ -47,22 +47,22 @@ export const App = () => {
               }
             />
           </Routes>
-        </Suspense>
+        )}
+      </Suspense>
 
-        <ToastContainer
-          font-size="15px"
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </Container>
-    )
+      <ToastContainer
+        font-size="15px"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </Container>
   );
 };
