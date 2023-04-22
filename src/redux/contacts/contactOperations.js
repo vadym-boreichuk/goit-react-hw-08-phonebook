@@ -9,7 +9,6 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
-      // console.log(response);
       // При успішному запиті повертаємо проміс із даними
       return response.data;
     } catch (e) {
@@ -37,7 +36,6 @@ export const addContact = createAsyncThunk(
   'contacts/add',
   async ({ name, number }, thunkAPI) => {
     try {
-      console.log({ name, number });
       const response = await axios.post('/contacts', { name, number });
       toast.success(`This ${name} contact is added to phonebook!`);
       return response.data;

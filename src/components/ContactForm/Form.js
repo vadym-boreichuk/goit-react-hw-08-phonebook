@@ -8,7 +8,6 @@ import { useContacts } from '../../hooks/useContacts';
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const { selectedContacts } = useContacts();
-  console.log(selectedContacts);
   const contactName = selectedContacts.map(name => name.name);
 
   const addCont = event => {
